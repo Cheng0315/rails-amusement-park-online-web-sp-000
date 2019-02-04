@@ -40,28 +40,6 @@ class AttractionsController < ApplicationController
 
   end
 
-  def update
-    att = Attraction.find(params[:id])
-
-    if current_user.tickets < att.tickets && current_user.height < att.min_height
-      flash[:alert] = "You do not have enough tickets to ride the #{att.name}. You are not tall enough to ride the #{att.name}"
-      redirect_to user_path(current_user)
-    elsif current_user.height < att.min_height
-      flash[:alert] = "You are not tall enough to ride the #{att.name}"
-      redirect_to user_path(current_user)
-    elsif current_user.tickets < att.tickets
-      flash[:alert] = "You do not have enough tickets to ride the #{att.name}"
-      redirect_to user_path(current_user)
-    else
-      current_user.happiness -= att.nausea_rating
-      current_user.nausea -= att.happiness_rating
-      current_user.tickets -= att.tickets
-      current_user.save
-      flash[:alert] = "Thanks for riding the #{att.name}!"
-      redirect_to user_path(current_user)
-    end
-  end
-
   private
 
   def attraction_params
