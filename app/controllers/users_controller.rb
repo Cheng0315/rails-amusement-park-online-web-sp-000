@@ -9,15 +9,19 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
-    if @user.save && !@user.admin
-      session[:user_id] = @user.id
-      redirect_to user_path(@user)
-    elsif @user.save && @user.admin
-      session[:user_id] = @user.id
-      redirect_to user_path(@user)
+    if current_user
+      redirect_to root
     else
-      redirect_to root_path
+      @user = User.new(user_params)
+      if @user.save && !@user.admin
+        session[:user_id] = @user.id
+        redirect_to user_path(@user)
+      elsif @user.save && @user.admin
+        session[:user_id] = @user.id
+        redirect_to user_path(@user)
+      else
+        redirect_to root_path
+      end
     end
   end
 
