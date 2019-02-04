@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     if current_user
       redirect_to root_path
     else
-      binding.pry
+
       @user = User.new(user_params)
       if @user.save && !@user.admin
         session[:user_id] = @user.id
