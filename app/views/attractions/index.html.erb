@@ -1,0 +1,27 @@
+<table>
+  <tbody>
+    <tr>
+      <td>Name</td>
+      <td>Tickets</td>
+      <td>Details</td>
+    </tr>
+    <%if @user.admin%>
+      <% @att.each do |a|%>
+        <tr>
+        <td><%=a.name%></td>
+        <td><%=a.tickets%></td>
+        <td><%=link_to "Show #{a.name}", attraction_path(a)%></td>
+        </tr>
+      <%end%>
+    <% else %>
+      <% @att.each do |a|%>
+        <tr>
+        <td><%=a.name%></td>
+        <td><%=a.tickets%></td>
+        <td><%=link_to "Go on #{a.name}", attraction_path(a)%></td>
+        </tr>
+      <%end%>
+    <%end%>
+  </tbody>
+</table>
+<%= link_to 'New Attraction', new_attraction_path%>
