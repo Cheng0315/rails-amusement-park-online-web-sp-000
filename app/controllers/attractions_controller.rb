@@ -31,7 +31,13 @@ class AttractionsController < ApplicationController
 
   def update
     @att = Attraction.find(params[:id])
-    @att.update(attraction_params)
+    if current_user.admin
+      @att.update(attraction_params)
+      redirect_to attraction_path(@att)
+    else
+      redirect_to root
+    end
+    
   end
 
   def update
