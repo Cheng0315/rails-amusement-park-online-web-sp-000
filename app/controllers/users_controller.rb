@@ -15,12 +15,10 @@ class UsersController < ApplicationController
     else
 
       @user = User.new(user_params)
-      if @user.save && !@user.admin
+      if @user.save
         session[:user_id] = @user.id
         redirect_to user_path(@user)
-      elsif @user.save && @user.admin
-        session[:user_id] = @user.id
-        redirect_to user_path(@user)
+
       else
         redirect_to root_path
       end
