@@ -5,9 +5,7 @@ Height Requirement: <%=@att.min_height%><br>
 Nausea Rating: <%=@att.nausea_rating%><br>
 Happiness RAting: <%=@att.happiness_rating%><br>
 <% if @user.admin %>
-  <%= form_for @att do |f| %>
-  <%= f.submit value='Edit Attraction'%>
-  <% end %>
+  <%= link_to 'Edit Attraction', %>
 <%else%>
   <%= form_for @att do |f| %>
   <%= f.submit value='Go on this ride'%>
