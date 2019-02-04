@@ -4,6 +4,12 @@ Ticket Requirement: <%=@att.tickets%><br>
 Height Requirement: <%=@att.min_height%><br>
 Nausea Rating: <%=@att.nausea_rating%><br>
 Happiness RAting: <%=@att.happiness_rating%><br>
-<%= form_for @att do |f| %>
-<%= f.submit value='Go on this ride'%>
+<% if @user.admin%>
+  <%= form_for @att do |f| %>
+  <%= f.submit value='Go on this ride'%>
+  <% end %>
+<%else%>
+  <%= form_for @att do |f| %>
+  <%= f.submit value='Go on this ride'%>
+  <% end %>
 <% end %>
