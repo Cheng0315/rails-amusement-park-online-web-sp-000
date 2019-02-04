@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    binding.pry
+
     if current_user
       redirect_to root_path
     else
