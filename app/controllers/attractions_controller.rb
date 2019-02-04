@@ -30,6 +30,11 @@ class AttractionsController < ApplicationController
   end
 
   def update
+    @att = Attraction.find(params[:id])
+    @att.update(attraction_params)
+  end
+
+  def update
     att = Attraction.find(params[:id])
 
     if current_user.tickets < att.tickets && current_user.height < att.min_height
