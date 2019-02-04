@@ -26,6 +26,7 @@ class UsersController < ApplicationController
   end
 
   def update
+    binding.pry
     att = Attraction.find(params[:id])
 
     if current_user.tickets < att.tickets && current_user.height < att.min_height
