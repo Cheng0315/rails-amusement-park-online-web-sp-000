@@ -22,6 +22,7 @@ class AttractionsController < ApplicationController
 
   def show
     @att = Attraction.find(params[:id])
+    @user = current_user
   end
 
   def update
