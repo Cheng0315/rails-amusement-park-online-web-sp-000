@@ -37,7 +37,7 @@ class AttractionsController < ApplicationController
     else
       redirect_to root
     end
-    
+
   end
 
   def update
