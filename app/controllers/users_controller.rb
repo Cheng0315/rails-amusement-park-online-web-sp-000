@@ -24,7 +24,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    if current_user
+      redirect_to root_path
+    else
+      @user = User.find(params[:id])
+    end
   end
 
   def destroy
